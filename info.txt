@@ -1,0 +1,10 @@
+HTML: Es el esqueleto de mi sitio / página / sistema (estructura)
+CSS: Son los estilos aplicados al HTML
+Flexbox: Es una técnica para CSS para acomodar elementos fácilmente
+DOM: Literalmente, el documento HTML entero
+Javascript:
+- Frontend = Interfaces visuales (User Interface / UI)
+- Backend = La parte lógica / abstracta de la app
+- React Native = desarrollo de aplicaciones para smartphones
+- Electron = desarrollo de aplicaciones desktop
+SEO = posicionamiento ante los resultados de busqueda en los navegadores
