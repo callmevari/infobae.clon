@@ -17,7 +17,10 @@ const getTodayNews = () => {
       document.getElementById('today-new-p').innerText = data.descripcion;
       document.getElementById('today-new-image').src = data.imagen;
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      document.getElementById('today-new-title').innerText = 'La API de Escritores de Portada está no funciona. Lo sentimos, intenta más tarde.'
+      console.log(err);
+    });
 }
 
 const dayToString = (day) => {
