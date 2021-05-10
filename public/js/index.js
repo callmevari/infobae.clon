@@ -1,3 +1,25 @@
+// Funciones
+
+// Este no funciona, async / await por algun motivo no anda en el navegador
+// const getTodayNews = async () => {
+//   const response = await fetch('http://localhost:3000/noticias/1');
+//   const data = response.json();
+//   return data;
+// };
+
+const getTodayNews = () => {
+  fetch('http://localhost:3000/noticias/1')
+    .then((response => response.json()))
+    .then(data => {
+      // poner datos de la API en mi frontend
+      // { titulo, descripcion, imagen, ... }
+      document.getElementById('today-new-title').innerText = data.titulo;
+      document.getElementById('today-new-p').innerText = data.descripcion;
+      document.getElementById('today-new-image').src = data.imagen;
+    })
+    .catch(err => console.log(err));
+}
+
 const dayToString = (day) => {
   switch (day) {
     case 0: return 'Domingo';
@@ -27,11 +49,19 @@ const monthToString = (month) => {
   }
 }
 
+// Fecha de hoy
 const date = new Date();
+const split = date.toString().split(" "); // [Sun, May, 09, ...]
+const today = split[2]; // 09
+
 const dayNumber = date.getDay(); // 5
 const dayName = dayToString(dayNumber); // viernes
 const monthNumber = date.getMonth(); // 2
 const monthName = monthToString(monthNumber); // marzo
 const year = date.getFullYear(); // 2021
 
-document.getElementById('today-date').innerText = `${dayName} ${dayNumber} de ${monthName} de ${year}`;
+document.getElementById('today-date').innerText = `${dayName} ${today} de ${monthName} de ${year}`;
+
+// Noticia de hoy
+getTodayNews();
+
