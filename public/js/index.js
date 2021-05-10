@@ -8,19 +8,35 @@
 // };
 
 const getTodayNews = () => {
-  fetch('http://localhost:3000/noticias/1')
-    .then((response => response.json()))
-    .then(data => {
+  // fetch('http://localhost:3000/noticias/1')
+  //   .then((response => response.json()))
+  //   .then(data => {
+  //     // poner datos de la API en mi frontend
+  //     // { titulo, descripcion, imagen, ... }
+  //     document.getElementById('today-new-title').innerText = data.titulo;
+  //     document.getElementById('today-new-p').innerText = data.descripcion;
+  //     document.getElementById('today-new-image').src = data.imagen;
+  //   })
+  //   .catch(err => {
+  //     document.getElementById('today-new-title').innerText = 'La API de Escritores de Portada está no funciona. Lo sentimos, intenta más tarde.'
+  //     console.log(err);
+  //   });
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
       // poner datos de la API en mi frontend
       // { titulo, descripcion, imagen, ... }
+      const data = JSON.parse(this.responseText);
       document.getElementById('today-new-title').innerText = data.titulo;
       document.getElementById('today-new-p').innerText = data.descripcion;
       document.getElementById('today-new-image').src = data.imagen;
-    })
-    .catch(err => {
+    } else {
       document.getElementById('today-new-title').innerText = 'La API de Escritores de Portada está no funciona. Lo sentimos, intenta más tarde.'
-      console.log(err);
-    });
+    }
+  };
+  xhttp.open("POST", "http://localhost:3000/noticias/1", true);
+  xhttp.send();
 }
 
 const dayToString = (day) => {
